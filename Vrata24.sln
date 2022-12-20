@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vrata24.Api", "Vrata24.Api\Vrata24.Api.csproj", "{CA4090E0-2363-49FB-A4C5-2B53C0C2A41B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vrata24.Core", "Vrata24.Core\Vrata24.Core.csproj", "{082F6539-9FD1-4C4D-ABB8-2489824C8F8F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vrata24.Infrastructure", "Vrata24.Infrastructure\Vrata24.Infrastructure.csproj", "{0ED15D3D-DF8B-4B7C-BCB8-357218B22D9A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CA4090E0-2363-49FB-A4C5-2B53C0C2A41B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA4090E0-2363-49FB-A4C5-2B53C0C2A41B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA4090E0-2363-49FB-A4C5-2B53C0C2A41B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA4090E0-2363-49FB-A4C5-2B53C0C2A41B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{082F6539-9FD1-4C4D-ABB8-2489824C8F8F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{082F6539-9FD1-4C4D-ABB8-2489824C8F8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{082F6539-9FD1-4C4D-ABB8-2489824C8F8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{082F6539-9FD1-4C4D-ABB8-2489824C8F8F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0ED15D3D-DF8B-4B7C-BCB8-357218B22D9A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0ED15D3D-DF8B-4B7C-BCB8-357218B22D9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0ED15D3D-DF8B-4B7C-BCB8-357218B22D9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0ED15D3D-DF8B-4B7C-BCB8-357218B22D9A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
