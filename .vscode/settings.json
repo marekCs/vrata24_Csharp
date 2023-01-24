@@ -2,5 +2,13 @@
   "editor.defaultFormatter": "csharpier.csharpier-vscode",
   "editor.formatOnPaste": true,
   "editor.formatOnSave": true,
-  "cSpell.words": ["Vrata"]
+  "cSpell.words": [
+    "Vrata"
+  ],
+  "[ahk]": {
+    "editor.defaultFormatter": "mark-wiemer.vscode-autohotkey-plus-plus"
+  },
+  "[csharp]": {
+    "editor.defaultFormatter": "ms-dotnettools.csharp"
+  }
 }

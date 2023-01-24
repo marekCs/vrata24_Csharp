@@ -1,0 +1,18 @@
+[
+  {
+    "Id": 1,
+    "Name": "Vrata pojezdová"
+  },
+  {
+    "Id": 2,
+    "Name": "Vrata trakční"
+  },
+  {
+    "Id": 3,
+    "Name": "Vrata garážová"
+  },
+  {
+    "Id": 4,
+    "Name": "Vrata deluxe"
+  }
+]
