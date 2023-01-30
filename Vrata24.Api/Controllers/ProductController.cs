@@ -1,15 +1,13 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+using Vrata24.Api.Controllers;
 using Vrata24.Api.Dtos;
 using Vrata24.Core.Entities;
 using Vrata24.Core.Interfaces;
 using Vrata24.Core.Specifications;
-using Vrata24.Infrastructure.Data;
+using Vrata24.Api.Errors;
 
-namespace Vrata24.Api.Controllers;
-[Route("api/products")]
-public class ProductController : ControllerBase
+public class ProductController : BaseApiController
 {
     private readonly IGenericRepository<Product> _productsRepo;
     private readonly IGenericRepository<ProductBrand> _productBrandRepo;
@@ -39,11 +37,15 @@ public class ProductController : ControllerBase
     }
 
     [HttpGet("{id}")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<ActionResult<ProductToReturnDto>> GetProduct(int id)
     {
         var spec = new ProductsWithTypesAndBrandsSpecification(id);
 
         var product = await _productsRepo.GetEntityWithSpec(spec);
+
+        if (product == null) return NotFound(new ApiResponse(404));
 
         return _mapper.Map<Product, ProductToReturnDto>(product);
     }
