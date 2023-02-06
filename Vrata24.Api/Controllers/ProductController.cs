@@ -6,7 +6,9 @@ using Vrata24.Core.Entities;
 using Vrata24.Core.Interfaces;
 using Vrata24.Core.Specifications;
 using Vrata24.Api.Errors;
-
+using Vrata24.Core.Specifications;
+using Vrata24.Api.Helpers;
+using System.Web.Http.Cors;
 public class ProductController : BaseApiController
 {
     private readonly IGenericRepository<Product> _productsRepo;
@@ -26,19 +28,27 @@ public class ProductController : BaseApiController
     }
 
     [HttpGet]
-    public async Task<ActionResult<IReadOnlyList<ProductToReturnDto>>> GetProducts()
+    public async Task<ActionResult<Pagination<ProductToReturnDto>>> GetProducts(
+        [FromQuery]ProductSpecParamas productParams)
     {
-        var spec = new ProductsWithTypesAndBrandsSpecification();
+        var spec = new ProductsWithTypesAndBrandsSpecification(productParams);
 
+        var countSpec = new ProductWithFiltersForCountSpecification(productParams);
+
+        var totemItems = await _productsRepo.CountAsync(countSpec);
+        
         var products = await _productsRepo.ListAsync(spec);
 
-        return Ok(_mapper
-            .Map<IReadOnlyList<Product>, IReadOnlyList<ProductToReturnDto>>(products));
+        var data = _mapper
+            .Map<IReadOnlyList<Product>, IReadOnlyList<ProductToReturnDto>>(products);
+
+        return Ok(new Pagination<ProductToReturnDto>(productParams.PageIndex,
+            productParams.PageSize, totemItems, data));
     }
 
     [HttpGet("{id}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
-    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status404NotFound)]
     public async Task<ActionResult<ProductToReturnDto>> GetProduct(int id)
     {
         var spec = new ProductsWithTypesAndBrandsSpecification(id);

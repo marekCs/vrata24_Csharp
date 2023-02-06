@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Cors;
 using Microsoft.EntityFrameworkCore;
 using Vrata24.Api.Extensions;
 using Vrata24.Api.Helpers;
@@ -6,14 +7,8 @@ using Vrata24.Infrastructure.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 {
-    builder.Services.AddAutoMapper(typeof(MappingProfiles));
     builder.Services.AddControllers();
-    builder.Services.AddDbContext<StoreContext>(
-        x => x.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection"))
-    );
-
-    builder.Services.AddApplicationServices();
-    builder.Services.AddSwaggerDocumentation();
+    builder.Services.AddApplicationServices(builder.Configuration);
 }
 
 var app = builder.Build();
@@ -22,19 +17,18 @@ var app = builder.Build();
 
     app.UseStatusCodePagesWithReExecute("/errors/{0}");
 
-    app.UseHttpsRedirection();
+    // UseSwagger() and UseSwaggerUI()
+    app.UseSwaggerDocumentation();
 
-    app.UseRouting();
     app.UseStaticFiles();
+
+    app.UseCors("CorsPolicy");
 
     app.UseAuthorization();
 
-    app.UseSwaggerDocumentation();
+    app.UseHttpsRedirection();
 
-    app.UseEndpoints(endpoints =>
-    {
-        endpoints.MapControllers();
-    });
+    app.MapControllers();
 
     using var scope = app.Services.CreateScope();
     var services = scope.ServiceProvider;
