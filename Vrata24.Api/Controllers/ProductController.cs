@@ -8,7 +8,6 @@ using Vrata24.Core.Specifications;
 using Vrata24.Api.Errors;
 using Vrata24.Core.Specifications;
 using Vrata24.Api.Helpers;
-using System.Web.Http.Cors;
 public class ProductController : BaseApiController
 {
     private readonly IGenericRepository<Product> _productsRepo;
@@ -29,14 +28,13 @@ public class ProductController : BaseApiController
 
     [HttpGet]
     public async Task<ActionResult<Pagination<ProductToReturnDto>>> GetProducts(
-        [FromQuery]ProductSpecParamas productParams)
+        [FromQuery] ProductSpecParamas productParams)
     {
         var spec = new ProductsWithTypesAndBrandsSpecification(productParams);
 
         var countSpec = new ProductWithFiltersForCountSpecification(productParams);
 
         var totemItems = await _productsRepo.CountAsync(countSpec);
-        
         var products = await _productsRepo.ListAsync(spec);
 
         var data = _mapper
