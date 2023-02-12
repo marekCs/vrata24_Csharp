@@ -8,7 +8,7 @@ using Vrata24.Core.Specifications;
 
 namespace Vrata24.Infrastructure.Data
 {
-    public class SpecificationEvaluator<TEntity> where TEntity : BaseEntity
+    public static class SpecificationEvaluator<TEntity> where TEntity : BaseEntity
     {
         public static IQueryable<TEntity> GetQuery(IQueryable<TEntity> inputQuery,
             ISpecification<TEntity> spec)
@@ -35,9 +35,7 @@ namespace Vrata24.Infrastructure.Data
                 query = query.Skip(spec.Skip).Take(spec.Take);
             }
 
-            query = spec.Includes.Aggregate(query, (current, include) => current.Include(include));
-
-            return query;
+            return spec.Includes.Aggregate(query, (current, include) => current.Include(include));
         }
     }
 }
