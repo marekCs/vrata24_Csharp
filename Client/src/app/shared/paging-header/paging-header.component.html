@@ -1,0 +1,17 @@
+<header *ngIf="totalCount && pageNumber && pageSize">
+  <span *ngIf="totalCount > 0"
+    >Zobrazuji
+    <strong>
+      {{ (pageNumber - 1) * pageSize + 1 }} -
+      {{
+        pageNumber * pageSize > totalCount ? totalCount : pageNumber * pageSize
+      }}
+    </strong>
+    z
+    <strong>{{ totalCount }}</strong>
+    výsledků</span
+  >
+  <span *ngIF="totalCount === 0"
+    >Je tu <strong>0</strong> výsledků pro tento filtr</span
+  >
+</header>
